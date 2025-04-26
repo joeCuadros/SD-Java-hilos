@@ -62,10 +62,20 @@ public class Carro extends Thread {
         return "("+this.nombre +") se mueve";
     }
 
-    public void finalizo(){
-        System.out.println("> El Carro " + this.nombre + " ha terminado en " + this.tiempo + 
-            " segundos y ha recorrido " + this.distancia + " m {"+this.estadoFinalizacion+"}" );
+    public void terminado(){
+        System.out.println("> El Carro '" + this.nombre + 
+            "' ha terminado en " + this.tiempo + " segundos y ha recorrido " + 
+            this.distancia + " m {"+this.estadoFinalizacion+"}" );
     }
+    
+    public void terminadoPuesto(){
+        System.out.println("("+this.estadoFinalizacion+"), el Carro '"+ this.nombre 
+            + "', "+ this.tiempo + " seg, ha recorrido "+ this.distancia + " m, a = " 
+            + this.aceleracion + " m/s^2, v = " + this.velocidad 
+            + " m/s, gasolina = "+ this.gasolina + " L" );
+
+    }
+    
     // procesos potegido contra condiciones de carrera
     public synchronized void modificarVelocidad(int cantidad) {
         this.velocidad = Math.max(this.velocidad + cantidad, 0);
@@ -85,7 +95,7 @@ public class Carro extends Thread {
     @Override
     public void run() {
         try {
-            while (this.tiempo < PISTA.MAX_TIEMPO && this.PISTA.carreraTerminada == false) {
+            while (this.tiempo < PISTA.MAX_TIEMPO && this.PISTA.carreraTerminada == false && this.estadoFinalizacion.equals("normal")) {
                 Thread.sleep(PISTA.VELOCIDAD);
                 this.tiempo++;
                 // ejecutar el proceso de la pista

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Pista {
     // variables Carro
@@ -6,10 +7,12 @@ public class Pista {
     public final int DESACELERACION;
     public final int MAX_TIEMPO;
     public final int MAX_VELOCIDAD;
+    public static final int MAX_PUESTO = 3;
     // variables de la pista
     public int META;
     public boolean carreraTerminada = false;
     private ArrayList<Carro> carros;
+    private final List<Carro> posiciones;
     private ArrayList<Eventos> eventos = new ArrayList<>();
 
     public Pista(long velocidad, int desaceleracion, int maxTiempo, int maxVelocidad) {
@@ -17,6 +20,7 @@ public class Pista {
         this.DESACELERACION = desaceleracion;
         this.MAX_TIEMPO = maxTiempo;
         this.MAX_VELOCIDAD = maxVelocidad;
+        this.posiciones = new ArrayList<>();
     }
 
     public void programarCarrera(int meta, final ArrayList<Carro> carros, int cantidadEventos) {
@@ -28,12 +32,14 @@ public class Pista {
     }
 
     public synchronized void ganeCarrera(final Carro carro) {
-        if (!carreraTerminada) {
-            carro.estadoFinalizacion = "ganador";
-            carreraTerminada = true;
-        }else {
-            carro.estadoFinalizacion = "ganador";
+        if (!carreraTerminada && carro.estadoFinalizacion.equals("normal")) {
+                carro.estadoFinalizacion = (posiciones.size()+1) + " puesto";
+                if (posiciones.size() == (MAX_PUESTO - 1 )) {
+                    carreraTerminada = true;
+                }
+            posiciones.add(carro);
         }
+        //carro.estadoFinalizacion = "termino";
     }
     // ejecutar la carrera
     public void Ejecutar(final ArrayList<Thread> hilos) {
@@ -47,6 +53,18 @@ public class Pista {
             hilos.add(carro);
         }
     }
-       
+
+    public void ImprimirCarrera() {
+        for (Carro carro : this.carros) {
+            carro.terminado(); 
+        }
+    }
+
+    public void imprimirPosiciones() {
+        System.out.println("POSICIONES: ");
+        for (Carro carro : this.posiciones) {
+            carro.terminadoPuesto();
+        }
+    }
 }
 

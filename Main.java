@@ -23,9 +23,7 @@ public class Main {
         }
 
         System.out.println("LA CARRERA HA TERMINADO");
-        for (Carro carro : carros) {
-            carro.finalizo(); 
-        }
-
+        pista.ImprimirCarrera();
+        pista.imprimirPosiciones();
     }
 }
