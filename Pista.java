@@ -10,7 +10,7 @@ public class Pista {
     public static final int MAX_PUESTO = 3;
     // variables de la pista
     public int META;
-    public boolean carreraTerminada = false;
+    public volatile boolean carreraTerminada = false;
     private ArrayList<Carro> carros;
     private final List<Carro> posiciones;
     private ArrayList<Eventos> eventos = new ArrayList<>();
@@ -39,19 +39,19 @@ public class Pista {
                 }
             posiciones.add(carro);
         }
-        //carro.estadoFinalizacion = "termino";
     }
     // ejecutar la carrera
     public void Ejecutar(final ArrayList<Thread> hilos) {
         System.out.println("LA CARRERA HA COMENZADO");
-        for (Eventos evento : eventos) {
-            evento.start();
-            hilos.add(evento);
-        }
         for (Carro carro : carros) {
             carro.start();
             hilos.add(carro);
         }
+        for (Eventos evento : eventos) {
+            evento.start();
+            hilos.add(evento);
+        }
+        
     }
 
     public void ImprimirCarrera() {

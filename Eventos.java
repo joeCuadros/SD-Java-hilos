@@ -1,41 +1,47 @@
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 
 public class Eventos extends Thread {
     public final Pista PISTA;
     private final ArrayList<Carro> carros;
     private int tiempo;
     private byte sinEvento;
-    private byte trampas;
-    private byte plus;
+    private byte desventajas;
+    private byte ventajas;
 
-    public Eventos(byte sinEvento, byte trampas, byte plus, Pista pista, ArrayList<Carro> carros) {
+    public Eventos(byte sinEvento, byte desventajas, byte ventajas, Pista pista, ArrayList<Carro> carros) {
         this.PISTA = pista;
         this.carros = carros;
         this.sinEvento = sinEvento;
-        this.trampas = trampas;
-        this.plus = plus;
+        this.desventajas = desventajas;
+        this.ventajas = ventajas;
         this.tiempo = 0;
     }
 
-    private synchronized Carro obtenerCarro() {
-        List<Carro> filtrados = carros.stream()
-            .filter(c -> "normal".equals(c.estadoFinalizacion))
-            .toList();
-        return filtrados.isEmpty() ? null : filtrados.get((int) (Math.random() * filtrados.size()));
+    private Carro obtenerCarro() {
+        synchronized (carros) {
+            ArrayList<Carro> copia = new ArrayList<>(carros);
+            Collections.shuffle(copia);
+            for (Carro c : copia) {
+                if ("normal".equals(c.estadoFinalizacion)) {
+                    return c;
+                }
+            }
+            return null;
+        }
     }
     
     private synchronized void eventoTrampa() {
-        Carro carroTrampa = obtenerCarro();
-        if (carroTrampa != null) {
-            //System.out.println(">{XX}(" + carroTrampa.getNombre() + ") ha caido en una trampa");
+        Carro carro = obtenerCarro();
+        if (carro != null) {
+            // ventajas
         }
     }
 
-    private synchronized void eventoPlus() {
-        Carro carroTrampa = obtenerCarro();
-        if (carroTrampa != null) {
-            //System.out.println(">{?}(" + carroTrampa.getNombre() + ") ha caido en una trampa");
+    private synchronized void eventoventajas() {
+        Carro carro = obtenerCarro();
+        if (carro != null) {
+            //Desventajas
         }
     }
 
@@ -46,13 +52,12 @@ public class Eventos extends Thread {
                 Thread.sleep(PISTA.VELOCIDAD);
                 this.tiempo++;
                 // aleatorio de eventos
-                int random = (int) (Math.random() * (this.sinEvento + this.trampas + this.plus));
-                if (random < this.trampas){
+                int random = (int) (Math.random() * (this.sinEvento + this.desventajas + this.ventajas));
+                if (random < this.desventajas){
                     this.eventoTrampa();
-                } else if (random < (this.trampas + this.plus)) {
-                    this.eventoPlus();
+                } else if (random < (this.desventajas + this.ventajas)) {
+                    this.eventoventajas();
                 }
-                System.out.println(">" + this.tiempo + "s: " + this.carros.size() + " carros en la pista");
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

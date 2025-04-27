@@ -1,15 +1,16 @@
 import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) { 
-        Pista pista = new Pista(1000,-1,20,100); 
+        Pista pista = new Pista(500,-1,30,100); 
         // lista de carros
         ArrayList<Carro> carros = new ArrayList<>();
-        carros.add(new Carro("2", 1, 3,25, pista));
-        carros.add(new Carro("2-1", 1, 3,10, pista));
-        carros.add(new Carro("2-2", 1, 3,20, pista));
-        carros.add(new Carro("2-3", 2, 1,15, pista));
+        carros.add(new Carro("Thunderbolt", 3, 4, 20, pista)); 
+        carros.add(new Carro("Speedster", 2, 5, 18, pista)); 
+        carros.add(new Carro("Vortex", 4, 3, 22, pista)); 
+        carros.add(new Carro("NitroX", 3, 5, 17, pista));
+        carros.add(new Carro("Falcon", 3, 4, 19, pista)); 
 
-        pista.programarCarrera(100, carros,1);
+        pista.programarCarrera(300, carros,1);
         
         ArrayList<Thread> hilos = new ArrayList<>(); // lista de hilos     
         pista.Ejecutar(hilos);

@@ -8,7 +8,7 @@ public class Carro extends Thread {
     private int tiempo;
     private int gasolina;
     private byte depurable;
-    public String estadoFinalizacion = "normal"; 
+    public volatile String estadoFinalizacion = "normal"; 
     /*
      * 1 = mostrar todo
      * 2 = mostrar distancia y gasolina
