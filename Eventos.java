@@ -12,7 +12,7 @@ public class Eventos extends Thread {
     private byte ventajas;
 
 
-    public Eventos(byte sinEvento, byte desventajas, byte ventajas, Pista pista, ArrayList<Carro> carros) {
+    public Eventos(byte desventajas, byte ventajas, byte sinEvento, Pista pista, ArrayList<Carro> carros) {
         this.PISTA = pista;
         this.carros = carros;
         this.sinEvento = sinEvento;

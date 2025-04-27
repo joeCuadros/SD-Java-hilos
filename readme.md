@@ -36,6 +36,7 @@ Descargar este archivo **no necesario tener la carpeta ejer4**
 - Se encarga de crear la cantidad de eventos 
 - Se encarga de ejecutar los carros y eventos 
 - Se crea ventajas y desventajas
+- Se crear carro hasta carros de forma aleatoria
 
 ## Ventajas y desventajas
 Aun no hay programado
@@ -67,16 +68,29 @@ Aun no hay programado
 11. **MejoraDefinitiva** = `[+5, +10]` L de gasolina, `[+2, +8]` m/s de velocidad, `[+1, +2]` m/s² de aceleración  
 
 ### Carros 
-1. **Flash**, a = 2, v = 0, gasolina = 18  
-2. **Bolt**, a = 3, v = 0, gasolina = 16  
-3. **Steady**, a = 1, v = 1, gasolina = 22  
-4. **Cruiser**, a = 2, v = 1, gasolina = 20  
-5. **Rocket**, a = 3, v = 2, gasolina = 15  
-6. **Phantom**, a = 4, v = 0, gasolina = 14  
-7. **Titan**, a = 1, v = 2, gasolina = 25  
-8. **Vortex**, a = 3, v = 1, gasolina = 17  
-9. **Ranger**, a = 2, v = 0, gasolina = 19  
-10. **Blazer**, a = 4, v = 1, gasolina = 13 
+| Nombre   | a (m/s²) | v (m/s) | gasolina (L) |
+|----------|----------|---------|--------------|
+| **Flash**   | 2        | 0       | 18           |
+| **Bolt**    | 3        | 0       | 16           |
+| **Steady**  | 1        | 1       | 22           |
+| **Cruiser** | 2        | 1       | 20           |
+| **Rocket**  | 3        | 2       | 15           |
+| **Phantom** | 4        | 0       | 14           |
+| **Titan**   | 1        | 2       | 25           |
+| **Vortex**  | 3        | 1       | 17           |
+| **Ranger**  | 2        | 0       | 19           |
+| **Blazer**  | 4        | 1       | 13           |
 
 ### Carreras
-1. <tipo>, c = <cantidad de eventos>, [] = <rango de probabilidad negativo>, [] = <rango de probabilidad positiva>, [] = <rango de probabilidad de no hacer nada>, meta = <distancia para ganar la carrera>, t = <tiempo maximo de carrera>, d = <en caso de que no tenga combustible la velocida de desaceleracion>, maxVel = <maxVelocidad antes que explote el carro>
+| Tipo           | c  | [neg] | [pos] | [nada] | meta(m) | t(s) | d(m/s²) | maxVel(m/s) |
+|----------------|----|-------|-------|--------|---------|------|---------|-------------|
+| **Sprint**       | 2  | 1–2   | 2–3   | 4–6    | 50      | 20   | –1      | **25**      |
+| **Medio**        | 3  | 1–2   | 1–3   | 3–5    | 100     | 35   | –1      | **30**      |
+| **Maraton**      | 4  | 2–4   | 1–3   | 2–4    | 200     | 70   | –1      | **50**      |
+| **Caos**         | 4  | 2–3   | 2–3   | 1–2    | 120     | 30   | –2      | **28**      |
+| **Offroad**      | 3  | 2–4   | 1–2   | 4–6    | 100     | 40   | –1      | **20**      |
+| **Circuito**     | 3  | 1–3   | 2–4   | 3–5    | 150     | 50   | –1      | **35**      |
+| **Rally**        | 4  | 2–5   | 1–3   | 1–3    | 130     | 45   | –2      | **22**      |
+| **Ultramaraton** | 6  | 3–6   | 1–4   | 1–2    | 300     | 90   | –1      | **50**      |
+| **Eliminatoria** | 3  | 1–2   | 2–3   | 5–7    | 80      | 25   | –1      | **22**      |
+| **VelocidadPura**| 2  | 1–1   | 4–6   | 2–3    | 70      | 25   | –1      | **25**      |
