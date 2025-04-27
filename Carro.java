@@ -45,8 +45,10 @@ public class Carro extends Thread {
         // si la gasolina es 0
         String Gasolina = String.valueOf(this.gasolina);
         if (this.gasolina == 0){
-            modificarAceleracion(null,-1);
+            modificarAceleracion(null,PISTA.DESACELERACION);
             Gasolina = "X";
+        } else if (this.gasolina > 0 && this.aceleracion <= 0){
+            modificarAceleracion(null,1);
         }
         // imprimir el estado del carro
         if (depurable == 1) {

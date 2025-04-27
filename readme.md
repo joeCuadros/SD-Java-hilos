@@ -40,9 +40,43 @@ Descargar este archivo **no necesario tener la carpeta ejer4**
 ## Ventajas y desventajas
 Aun no hay programado
 ### Desventajas
-1. Bache = [-5, -1] de velocidad
-2. Perdida de gasolina = [-3, -1] de gasolina
+1. **Rebote** = `[-15, -7]` m de distancia  
+2. **Retroceso** = `[-25, -10]` m de distancia  
+3. **Deslizamiento** = `[-10, -3]` m de distancia  
+4. **Bache** = `[-3, -1]` m/s de velocidad  
+5. **Obstaculo** = `[-5, 0]` m/s de velocidad  
+6. **Viento(-)** = `[-4, -1]` m/s de velocidad  
+7. **MotorFallido** = `[-2, -1]` m/s² de aceleración  
+8. **Fuga** = `[-4, -1]` L de gasolina  
+9. **GolpeMortal** = `[-3, 0]` L de gasolina y `[-2, 0]` m/s² de aceleración  
+10. **SuperViento(-)** = `[-10, 0]` m de distancia y `[-4, 0]` m/s de velocidad  
+11. **GolpeTotal** = `[-5, 0]` L de gasolina, `[-2, 0]` m/s² de aceleración, `[-4, -1]` m/s de velocidad  
+
 
 ### Ventajas
-1. Turbo = [2, 5] de velocidad
-2. Recarga de gasolina = [1, 3] de gasolina
+1. **Atajo** = `[+8, +15]` m de distancia  
+2. **Impulso** = `[+5, +12]` m de distancia  
+3. **SuperAtajo** = `[+12, +25]` m de distancia  
+4. **Turbo** = `[+1, +3]` m/s de velocidad  
+5. **Viento(+)** = `[+1, +4]` m/s de velocidad  
+6. **PistaLisa** = `[+2, +5]` m/s de velocidad  
+7. **MotorMejorado** = `[+1, +2]` m/s² de aceleración  
+8. **Recarga** = `[+4, +8]` L de gasolina  
+9. **SuperMejora** = `[+3, +5]` L de gasolina y `[+2, +6]` m/s de velocidad  
+10. **SuperViento(+)** = `[+5, +12]` m de distancia y `[+2, +4]` m/s de velocidad  
+11. **MejoraDefinitiva** = `[+5, +10]` L de gasolina, `[+2, +8]` m/s de velocidad, `[+1, +2]` m/s² de aceleración  
+
+### Carros 
+1. **Flash**, a = 2, v = 0, gasolina = 18  
+2. **Bolt**, a = 3, v = 0, gasolina = 16  
+3. **Steady**, a = 1, v = 1, gasolina = 22  
+4. **Cruiser**, a = 2, v = 1, gasolina = 20  
+5. **Rocket**, a = 3, v = 2, gasolina = 15  
+6. **Phantom**, a = 4, v = 0, gasolina = 14  
+7. **Titan**, a = 1, v = 2, gasolina = 25  
+8. **Vortex**, a = 3, v = 1, gasolina = 17  
+9. **Ranger**, a = 2, v = 0, gasolina = 19  
+10. **Blazer**, a = 4, v = 1, gasolina = 13 
+
+### Carreras
+1. <tipo>, c = <cantidad de eventos>, [] = <rango de probabilidad negativo>, [] = <rango de probabilidad positiva>, [] = <rango de probabilidad de no hacer nada>, meta = <distancia para ganar la carrera>, t = <tiempo maximo de carrera>, d = <en caso de que no tenga combustible la velocida de desaceleracion>, maxVel = <maxVelocidad antes que explote el carro>
