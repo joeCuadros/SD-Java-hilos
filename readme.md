@@ -23,7 +23,8 @@ Descargar este archivo **no necesario tener la carpeta ejer4**
 - El evento inicializada con probabilidades
 - Se inicia una interaccion termina cuanto el tiempo llega a los establecido por **pista** o se acabo las primeras posiciones
 - En cada interacion ejecuta
-1. Segun las probabilidades se elige: Ventajas, desventajas y no hacer nada (se vera en la sesion de ventajas y desventajas)
+1. Segun las probabilidades se elige: Ventajas, desventajas y no hacer nada (se vera en la sesion de ventajas y desventajas) que viene de **pista**
+2. Ejecuta segun segun lo que toco
 
 
 ### Main.java
@@ -34,9 +35,14 @@ Descargar este archivo **no necesario tener la carpeta ejer4**
 - Tiene variables importantes que seran usadas tanto por eventos y por carros
 - Se encarga de crear la cantidad de eventos 
 - Se encarga de ejecutar los carros y eventos 
+- Se crea ventajas y desventajas
 
 ## Ventajas y desventajas
 Aun no hay programado
-### ventajas
 ### Desventajas
+1. Bache = [-5, -1] de velocidad
+2. Perdida de gasolina = [-3, -1] de gasolina
 
+### Ventajas
+1. Turbo = [2, 5] de velocidad
+2. Recarga de gasolina = [1, 3] de gasolina

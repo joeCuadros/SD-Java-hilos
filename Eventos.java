@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.function.Consumer;
 
 public class Eventos extends Thread {
     public final Pista PISTA;
@@ -8,6 +10,7 @@ public class Eventos extends Thread {
     private byte sinEvento;
     private byte desventajas;
     private byte ventajas;
+
 
     public Eventos(byte sinEvento, byte desventajas, byte ventajas, Pista pista, ArrayList<Carro> carros) {
         this.PISTA = pista;
@@ -30,18 +33,26 @@ public class Eventos extends Thread {
             return null;
         }
     }
-    
+
     private synchronized void eventoTrampa() {
         Carro carro = obtenerCarro();
         if (carro != null) {
-            // ventajas
+            List<Consumer<Carro>> efectos = PISTA.efectosTrampas;
+            Consumer<Carro> efecto = efectos.get(
+                (int)(Math.random() * efectos.size())
+            );
+            efecto.accept(carro);
         }
     }
 
     private synchronized void eventoventajas() {
         Carro carro = obtenerCarro();
         if (carro != null) {
-            //Desventajas
+            List<Consumer<Carro>> efectos = PISTA.efectosVentajas;
+            Consumer<Carro> efecto = efectos.get(
+                (int)(Math.random() * efectos.size())
+            );
+            efecto.accept(carro);
         }
     }
 

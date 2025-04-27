@@ -45,7 +45,7 @@ public class Carro extends Thread {
         // si la gasolina es 0
         String Gasolina = String.valueOf(this.gasolina);
         if (this.gasolina == 0){
-            this.aceleracion = PISTA.DESACELERACION;
+            modificarAceleracion(null,-1);
             Gasolina = "X";
         }
         // imprimir el estado del carro
@@ -79,6 +79,14 @@ public class Carro extends Thread {
     // procesos potegido contra condiciones de carrera
     public synchronized void modificarVelocidad(int cantidad) {
         this.velocidad = Math.max(this.velocidad + cantidad, 0);
+        // modificacion de la velocidad
+        if (this.velocidad == 0 && this.gasolina == 0){
+            System.out.println("> ("+this.nombre +") se detuvo por falta de gasolina");
+            this.estadoFinalizacion = "Falta de gasolina";
+        }else if (this.velocidad > PISTA.MAX_VELOCIDAD){
+            System.out.println("> ("+this.nombre +") se destruyo por exceso de velocidad");
+            this.estadoFinalizacion = "Exceso de velocidad";
+        }
     }
 
     public synchronized void modificarDistancia(int cantidad) {
@@ -91,6 +99,15 @@ public class Carro extends Thread {
     public synchronized void modificarGasolina(int cantidad) {
         this.gasolina = Math.max(this.gasolina + cantidad, 0);
     }
+
+    public synchronized void modificarAceleracion(Integer cantidad,Integer colocado) {
+        if (colocado != null){
+            this.aceleracion = colocado;
+        }else if (cantidad != null){
+            this.aceleracion = this.aceleracion + cantidad;
+        }
+    }
+
     // ejecutar el carro
     @Override
     public void run() {
@@ -101,17 +118,7 @@ public class Carro extends Thread {
                 // ejecutar el proceso de la pista
                 modificarVelocidad(Math.min(this.aceleracion,this.gasolina));
                 modificarDistancia(this.velocidad);
-                modificarGasolina(- Math.max(this.aceleracion,0));
-                // modificacion segun la velocidad
-                if (this.velocidad == 0){
-                    System.out.println("> ("+this.nombre +") se detuvo por falta de gasolina");
-                    this.estadoFinalizacion = "Falta de gasolina";
-                    break;
-                }else if (this.velocidad > PISTA.MAX_VELOCIDAD){
-                    System.out.println("> ("+this.nombre +") se destruyo por exceso de velocidad");
-                    this.estadoFinalizacion = "Exceso de velocidad";
-                    break;
-                }
+                modificarGasolina(- Math.max(this.aceleracion,0));               
                 System.out.println(this.getEstado());
             }
         } catch (InterruptedException e) {
