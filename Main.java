@@ -128,9 +128,10 @@ public class Main {
                 int maxTiempo = solicitarInt("tiempo máximo (s) [Que sea positivo]");
                 int maxVelocidad = solicitarInt("velocidad máxima (m/s) [Número positivo alto]");
                 int eventos = solicitarInt("cantidad de eventos [Que sea positiva]");
+                int meta = solicitarInt("cuantos metros sera la meta [Que sea positiva]");
                 System.out.print("Ingresa nombre de la pista: ");
                 String nombrePista = sc.nextLine();
-                return new Pista(velocidad, desaceleracion, maxTiempo, maxVelocidad, eventos, nombrePista, carros);
+                return new Pista(velocidad, desaceleracion, maxTiempo, maxVelocidad, eventos, meta, nombrePista, carros);
             } catch (NumberFormatException e) {
                 System.out.println("Entrada inválida, ingresa un número entero.");
             }

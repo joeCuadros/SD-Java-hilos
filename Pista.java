@@ -22,7 +22,7 @@ public class Pista {
     public final List<Consumer<Carro>> efectosTrampas = new ArrayList<>();
     public final List<Consumer<Carro>> efectosVentajas = new ArrayList<>();
 
-    public Pista(long velocidad, int desaceleracion, int maxTiempo, int maxVelocidad,int cantidadEventos, String nombre, final ArrayList<Carro> carros) {
+    public Pista(long velocidad, int desaceleracion, int maxTiempo, int maxVelocidad,int cantidadEventos,int meta, String nombre, final ArrayList<Carro> carros) {
         for (int i=0; i < cantidadEventos; i++){
             eventos.add(new Eventos(
                 (byte) numeroAleatorio(1, 4),
@@ -31,6 +31,7 @@ public class Pista {
                 this, carros
             ));
         }
+        this.META = meta;
         this.VELOCIDAD = velocidad;
         this.DESACELERACION = desaceleracion;
         this.MAX_TIEMPO = maxTiempo;
