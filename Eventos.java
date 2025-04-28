@@ -42,6 +42,8 @@ public class Eventos extends Thread {
                 (int)(Math.random() * efectos.size())
             );
             efecto.accept(carro);
+        }else {
+            PISTA.carreraTerminada = true;
         }
     }
 
@@ -53,6 +55,8 @@ public class Eventos extends Thread {
                 (int)(Math.random() * efectos.size())
             );
             efecto.accept(carro);
+        }else {
+            PISTA.carreraTerminada = true;
         }
     }
 

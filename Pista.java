@@ -225,7 +225,7 @@ public class Pista {
     public void crearCarro(final ArrayList<Carro> carros) {
         final int numeroAleatorio = 1 + (int)(Math.random() * 10);
         switch (numeroAleatorio) {
-            case 1 -> {carros.add(new Carro("Flash"+cantidadCarros+"", 2, 0, 18, this));}
+            case 1 -> {carros.add(new Carro("Flash("+cantidadCarros+")", 2, 0, 18, this));}
             case 2 -> {carros.add(new Carro("Bolt("+cantidadCarros+")", 3, 0, 16, this));}
             case 3 -> {carros.add(new Carro("Steady("+cantidadCarros+")", 1, 1, 22, this));}
             case 4 -> {carros.add(new Carro("Cruiser("+cantidadCarros+")", 2, 1, 20, this));}
